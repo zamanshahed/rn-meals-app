@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     fontSize: 22,
+    fontWeight: "bold",
     textAlign: "right",
   },
 });
