@@ -33,6 +33,22 @@ const MealDetailsScreen = (props) => {
         <Text>{selectedMeal.complexity.toUpperCase()}</Text>
       </View>
 
+      <View style={styles.keyText}>
+        {selectedMeal.isVeagan ? <Text>Veagan</Text> : <Text>Vegetarian</Text>}
+
+        {selectedMeal.isGlutenFree ? (
+          <Text>Gluten Free</Text>
+        ) : (
+          <Text>Contains Gluten</Text>
+        )}
+
+        {selectedMeal.isLactoseFree ? (
+          <Text>Lactose Free</Text>
+        ) : (
+          <Text>Contains Lactose</Text>
+        )}
+      </View>
+
       <Text style={styles.textTitle}>Ingredients</Text>
       {selectedMeal.ingradients.map((item) => (
         <ListItem key={item}>{item}</ListItem>
@@ -86,12 +102,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   listStyle: {
-    marginVertical: 11,
+    marginVertical: 3,
     marginHorizontal: 22,
     borderColor: "#ccc",
     borderRadius: 21,
     borderWidth: 3,
-    padding: 12,
+    padding: 10,
+  },
+  keyText: {
+    flexDirection: "row",
+    padding: 9,
+    marginVertical: 4,
+    backgroundColor: "#ccc",
+    justifyContent: "space-around",
+    alignContent: "center",
+    alignItems: "center",
   },
 });
 
