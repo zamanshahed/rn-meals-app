@@ -19,9 +19,10 @@ const MealDetailsScreen = (props) => {
   const mealId = props.navigation.getParam("mealId");
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
-  useEffect(() => {
-    props.navigation.setParams({ mealTitle: selectedMeal.title });
-  }, [selectedMeal]);
+  //[bug] will slow down loading title
+  // useEffect(() => {
+  //   props.navigation.setParams({ mealTitle: selectedMeal.title });
+  // }, [selectedMeal]);
 
   return (
     <ScrollView>
