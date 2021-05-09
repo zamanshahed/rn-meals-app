@@ -29,7 +29,7 @@ const CategoriesScreen = (props) => {
 CategoriesScreen.navigationOptions = (navData) => {
   return {
     headerTitle: "Meal Categories",
-    headerLeft: (
+    headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
         <Item
           title="menu"

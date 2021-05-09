@@ -15,20 +15,20 @@ const FavouritesScreen = (props) => {
 };
 
 FavouritesScreen.navigationOptions = (navData) => {
- return {
-  headerTitle: "My Favourites",
-  headerLeft: (
-    <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-      <Item
-        title="menu"
-        iconName="ios-menu"
-        onPress={() => {
-          navData.navigation.toggleDrawer();
-        }}
-      />
-    </HeaderButtons>
-  ),
- };
+  return {
+    headerTitle: "My Favourites",
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
+        <Item
+          title="menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({
