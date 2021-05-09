@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { isValidElement } from "react";
 import { View, Text, StyleSheet, Switch } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
