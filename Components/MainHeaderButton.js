@@ -9,8 +9,8 @@ const MainHeaderButton = (props) => {
     <HeaderButton
       {...props}
       IconComponent={Ionicons}
-      iconSize={24}
-      color={Colors.accentColor}
+      iconSize={32}
+      color={Colors.pop}
     />
   );
 };

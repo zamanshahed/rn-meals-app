@@ -16,8 +16,12 @@ const ListItem = (props) => {
 
 const MealDetailsScreen = (props) => {
   const availableMeals = useSelector((state) => state.meals.meals);
-
   const mealId = props.navigation.getParam("mealId");
+
+  const isFavoriteMeal = useSelector((state) =>
+    state.meals.favMeals.some((meal) => meal.id === mealId)
+  );
+
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
   const dispatch = useDispatch();
@@ -32,6 +36,13 @@ const MealDetailsScreen = (props) => {
     //[bug] will slow down loading title
     // props.navigation.setParams({ mealTitle: selectedMeal.title });
   }, [toggleFavHandler]);
+
+  //for fav-icon-dynamic
+  useEffect(() => {
+    props.navigation.setParams({
+      isFavMeal: isFavoriteMeal,
+    });
+  }, [isFavoriteMeal]);
 
   return (
     <ScrollView>
@@ -75,6 +86,7 @@ const MealDetailsScreen = (props) => {
 MealDetailsScreen.navigationOptions = (navigationData) => {
   const mealTitle = navigationData.navigation.getParam("mealTitle");
   const toggleFav = navigationData.navigation.getParam("togglefav");
+  const isFav = navigationData.navigation.getParam("isFavMeal");
 
   // const mealId = navigationData.navigation.getParam("mealId");
   // const selectedMeal = MEALS.find((meal) => meal.id === mealId);
@@ -83,7 +95,11 @@ MealDetailsScreen.navigationOptions = (navigationData) => {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-        <Item title="favourite" iconName="heart" onPress={toggleFav} />
+        <Item
+          title="favourite"
+          iconName={isFav ? "heart" : "heart-outline"}
+          onPress={toggleFav}
+        />
       </HeaderButtons>
     ),
   };
