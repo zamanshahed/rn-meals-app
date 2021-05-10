@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 22,
     textAlign: "center",
+    marginTop: 18,
   },
   listStyle: {
     marginVertical: 3,
