@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import MainHeaderButton from "../Components/MainHeaderButton";
+import { toggleDrawer, toggleFavourite } from "../store/actions/meals";
 
 const ListItem = (props) => {
   return (
@@ -19,10 +20,18 @@ const MealDetailsScreen = (props) => {
   const mealId = props.navigation.getParam("mealId");
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
-  //[bug] will slow down loading title
-  // useEffect(() => {
-  //   props.navigation.setParams({ mealTitle: selectedMeal.title });
-  // }, [selectedMeal]);
+  const dispatch = useDispatch();
+
+  const toggleFavHandler = useCallback(() => {
+    dispatch(toggleFavourite(mealId));
+  }, [dispatch, mealId]);
+
+  useEffect(() => {
+    props.navigation.setParams({ togglefav: toggleFavHandler });
+
+    //[bug] will slow down loading title
+    // props.navigation.setParams({ mealTitle: selectedMeal.title });
+  }, [toggleFavHandler]);
 
   return (
     <ScrollView>
@@ -65,20 +74,16 @@ const MealDetailsScreen = (props) => {
 
 MealDetailsScreen.navigationOptions = (navigationData) => {
   const mealTitle = navigationData.navigation.getParam("mealTitle");
-  const mealId = navigationData.navigation.getParam("mealId");
+  const toggleFav = navigationData.navigation.getParam("togglefav");
+
+  // const mealId = navigationData.navigation.getParam("mealId");
   // const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
   return {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-        <Item
-          title="favourite"
-          iconName="heart"
-          onPress={() => {
-            console.log("fav button pressed !");
-          }}
-        />
+        <Item title="favourite" iconName="heart" onPress={toggleFav} />
       </HeaderButtons>
     ),
   };
