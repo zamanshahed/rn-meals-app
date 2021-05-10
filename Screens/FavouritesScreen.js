@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
 
@@ -13,6 +13,18 @@ const FavouritesScreen = (props) => {
   // const myFavMeals = MEALS.filter(
   //   (meal) => meal.id === "m3" || meal.id === "m2"
   // );
+
+  //check if no favMeal !
+  if (myFavMeals.length === 0 || !myFavMeals) {
+    return (
+      <View style={styles.screen}>
+        <Text style={styles.textStyle}>
+          No favourites! Start adding some...
+        </Text>
+      </View>
+    );
+  }
+
   return <MealList listData={myFavMeals} navigation={props.navigation} />;
 };
 
@@ -38,6 +50,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  textStyle: {
+    fontSize: 18,
   },
 });
 
