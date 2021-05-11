@@ -1,6 +1,6 @@
 # Foodies Recepie - stable v1.0
 
-### An beta release, built with expo-cli :partying_face: . This build is fully functional but not sure if works with all device layouts :grimacing: . It's not optimized with responsiveness. :roll_eyes:
+### A beta release, built with expo-cli :partying_face: . This build is fully functional but not sure if works with all device layouts :grimacing: . It's not optimized with responsiveness. :roll_eyes:
 
 ## Download apk from the release section
 
